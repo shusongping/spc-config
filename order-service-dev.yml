@@ -8,4 +8,25 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://eureka1:2001/eureka, http://eureka2:2002/eureka
+      defaultZone: http://127.0.0.1:2001/eureka, http://127.0.0.1:2002/eureka
+
+feign:
+  hystrix:
+    enabled: true
+
+#默认是1秒，可以不配置
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 500
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+
+
